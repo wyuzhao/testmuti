@@ -1,0 +1,15 @@
+#+ endpoint_in_url: False
+#+ description: 项目参与者某某出了哪些成果
+#+ defaults:
+#+   - projectName: "深海软体机器智能驱动技术"
+
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX org: <http://www.w3.org/ns/org#>
+PREFIX poap: <http://purl.org/zhejianglab/irobot-center/ontologies/poap#>
+select distinct ?Resultname where {
+    ?project foaf:name ?_projectName;
+             org:hasMember ?person.
+    ?person foaf:name ?_personName;
+         poap:hasResult ?Result.
+    ?Result foaf:name ?Resultname .
+}

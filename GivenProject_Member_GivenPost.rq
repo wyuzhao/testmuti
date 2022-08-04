@@ -1,0 +1,15 @@
+#+ endpoint_in_url: False
+#+ description: 职位为某某的项目参与者的都有谁
+#+ defaults:
+#+   - projectName: "深海软体机器智能驱动技术"
+
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX org: <http://www.w3.org/ns/org#>
+PREFIX poap: <http://purl.org/zhejianglab/irobot-center/ontologies/poap#>
+select distinct ?personname where {
+    ?project foaf:name ?_projectName;
+             org:hasMember ?person.
+    ?person foaf:name ?personname;
+            org:holds ?post.
+    ?post foaf:name ?_postName.
+}

@@ -1,0 +1,12 @@
+#+ endpoint_in_url: False
+#+ description: 项目造的机器人下潜深度是多少
+#+ defaults:
+#+   - projectName: "深海软体机器智能驱动技术"
+
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX irobot: <http://purl.org/zhejianglab/irobot-center/ontologies/irobot#>
+select ?submergedDepth where {
+	?project foaf:name ?_projectName .
+    ?robot foaf:maker ?project;
+           irobot:submergedDepth ?submergedDepth.
+}

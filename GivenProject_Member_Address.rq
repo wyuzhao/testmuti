@@ -1,0 +1,15 @@
+#+ endpoint_in_url: False
+#+ description: 项目参与者的地址
+#+ defaults:
+#+   - projectName: "深海软体机器智能驱动技术"
+
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX org: <http://www.w3.org/ns/org#>
+PREFIX locn: <http://www.w3.org/ns/locn#>
+select distinct ?fullAddress where {
+    ?project foaf:name ?_projectName;
+             org:hasMember ?person.
+    ?person locn:address ?address;
+            foaf:name ?personname.
+    ?address locn:fullAddress ?fullAddress
+}

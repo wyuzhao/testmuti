@@ -1,0 +1,15 @@
+#+ endpoint_in_url: False
+#+ description: 项目参与者来自哪些单位
+#+ defaults:
+#+   - projectName: "深海软体机器智能驱动技术"
+
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX org: <http://www.w3.org/ns/org#>
+PREFIX org-lab: <http://purl.org/zhejianglab/irobot-center/ontologies/org-lab#>
+select distinct ?orgname where {
+    ?project foaf:name ?_projectName;
+             org:hasMember ?person.
+    ?org org:hasMember ?person;
+         a org-lab:NonprofitEntity;
+         foaf:name ?orgname.
+}

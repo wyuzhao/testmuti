@@ -1,0 +1,16 @@
+#+ endpoint_in_url: False
+#+ description: 项目参与者学位/学历
+#+ defaults:
+#+   - projectName: "深海软体机器智能驱动技术"
+
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX org: <http://www.w3.org/ns/org#>
+PREFIX bob: <http://purl.org/zhejianglab/irobot-center/ontologies/robotbrain#>
+PREFIX poap: <http://purl.org/zhejianglab/irobot-center/ontologies/poap#>
+select distinct ?GraduationAwardname where {
+    ?project foaf:name ?_projectName;
+             org:hasMember ?person.
+    ?person bob:hasGraduation ?Graduation.
+    ?Graduation poap:GraduationAward ?GraduationAward.
+    ?GraduationAward foaf:name ?GraduationAwardname.
+}

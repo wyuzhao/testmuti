@@ -1,0 +1,17 @@
+#+ endpoint_in_url: False
+#+ description: 项目参与者的角色(负责人是谁)
+#+ defaults:
+#+   - projectName: "深海软体机器智能驱动技术"
+#+   - roleName: "项目负责人"
+
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX org: <http://www.w3.org/ns/org#>
+PREFIX poap: <http://purl.org/zhejianglab/irobot-center/ontologies/poap#>
+PREFIX bob: <http://purl.org/zhejianglab/irobot-center/ontologies/robotbrain#>
+select ?personname where {
+    ?project foaf:name ?_projectName;
+             bob:orgRole ?Role.
+    ?person bob:hasRole ?Role ;
+            foaf:name ?personname.
+    ?Role foaf:name ?_roleName.
+}

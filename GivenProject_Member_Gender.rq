@@ -1,0 +1,22 @@
+#+ endpoint_in_url: False
+#+ description: 项目参与者性别
+#+ defaults:
+#+   - projectName: "深海软体机器智能驱动技术"
+
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX org: <http://www.w3.org/ns/org#>
+PREFIX poap: <http://purl.org/zhejianglab/irobot-center/ontologies/poap#>
+select ?ans where
+{
+    bind(concat(str(?gendernum),str(?gender)) as ?ans)
+    {
+    	select ?gender (count(?gender) as ?gendernum) where {
+    		?project foaf:name ?_projectName;
+             		org:hasMember ?person.
+    		?person foaf:name ?personname;
+            		poap:hasGender ?genderiri.
+    		bind(strafter(str(?genderiri),"#") as ?gender).
+		}
+    	GROUP BY ?gender
+    }
+}
